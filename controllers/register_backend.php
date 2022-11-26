@@ -9,7 +9,7 @@ if(isset($request['register_button'])){
     $user_email = $request['user_email'];
     $password = $request['password'];
     $repeat_password = $request['repeat_password'];
-    $encript_password = password_hash($repeat_password, PASSWORD_BCRYPT);
+    $encript_password = sha1($repeat_password);
     if(empty($first_name)){
         $errors['first_name_error'] = 'Please input your first name.';
     }elseif(strlen($first_name) > 15){

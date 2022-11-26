@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,15 +65,29 @@
                                         <h1 class="h2 text-gray-900 ">Yummy <span class="text-danger">.</span> Deshboard</h1>
                                         <h2 class="text-gray-900  h4">Login</h2>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="POST" action="../controllers/login_backend.php">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="email" name="user_email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
+                                            <span class="text-danger">
+                                                <?php
+                                                    if(isset($_SESSION['user_email_error'])){
+                                                        echo $_SESSION['user_email_error'];
+                                                    }
+                                                ?>
+                                            </span>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
+                                                <span class="text-danger">
+                                                <?php
+                                                    if(isset($_SESSION['password_error'])){
+                                                        echo $_SESSION['password_error'];
+                                                    }
+                                                ?>
+                                            </span>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -79,9 +96,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                            <button type="submit" name="login_button" class="btn btn-primary btn-user btn-block">Login</button>
                                         <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
@@ -128,4 +143,6 @@
 <!-- Session unset -->
 <?php
 unset($_SESSION['success_massage']);
+unset($_SESSION['user_email_error']);
+unset($_SESSION['password_error']);
 ?>
