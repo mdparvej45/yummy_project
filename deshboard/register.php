@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
-
+    <title>Yummy Foods | Register</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -19,8 +21,29 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    
 
 </head>
+
+
+<!-- Add denided notifacation -->
+<?php
+if(isset($_SESSION['denided_massage'])){
+    ?>
+    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" >
+    <div class="toast-header">
+    <img src="./img/no_check_circle.png" style="width:40px;">
+      <strong class="me-auto">POST STATUS:</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body text-white bg-danger">
+      <?= $_SESSION['denided_massage'] ?>
+    </div>
+  </div>
+  <?php
+  }
+?>
+
 
 <body class="bg-gradient-primary">
 
@@ -39,34 +62,70 @@
                                 <h1 class="h2 text-gray-900 ">Yummy<span class="text-danger">.</span>  Deshboard</h1>
                                 <h2 class="text-gray-900  h4">Create an Account!</h2>
                             </div>
-                            <form class="user">
+                            <form class="user" method="POST" action="../controllers/register_backend.php">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                        <input type="text" name="first_name" class="form-control form-control-user" id="exampleFirstName"
                                             placeholder="First Name">
-                                    </div>
+                                        <span class="text-danger">
+                                            <?php
+                                                if(isset($_SESSION['errors']['first_name_error'])){
+                                                    echo $_SESSION['errors']['first_name_error'];
+                                                }
+                                            ?>
+                                        </span>
+                                        </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                        <input type="text" name="last_name" class="form-control form-control-user" id="exampleLastName"
                                             placeholder="Last Name">
+                                            <span class="text-danger">
+                                            <?php
+                                                if(isset($_SESSION['errors']['last_name_error'])){
+                                                    echo $_SESSION['errors']['last_name_error'];
+                                                }
+                                            ?>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                    <input type="email" name="user_email" class="form-control form-control-user" id="exampleInputEmail"
                                         placeholder="Email Address">
+                                        <span class="text-danger">
+                                            <?php
+                                                if(isset($_SESSION['errors']['user_email_error'])){
+                                                    echo $_SESSION['errors']['user_email_error'];
+                                                }
+                                            ?>
+                                        </span>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
+                                        <input type="password" name="password" class="form-control form-control-user"
                                             id="exampleInputPassword" placeholder="Password">
+                                            <span class="text-danger">
+                                            <?php
+                                                if(isset($_SESSION['errors']['password_error'])){
+                                                    echo $_SESSION['errors']['password_error'];
+                                                }
+                                            ?>
+                                        </span>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
+                                        <input type="password" name="repeat_password" class="form-control form-control-user"
                                             id="exampleRepeatPassword" placeholder="Repeat Password">
+                                            <span class="text-danger">
+                                                <small>
+                                                <?php
+                                                if(isset($_SESSION['errors']['repeat_password_error'])){
+                                                    echo $_SESSION['errors']['repeat_password_error'];
+                                                }
+                                            ?>
+                                                </small>
+                                        </span>
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
+                                <button type="submit" name="register_button" class="btn btn-primary btn-user btn-block"">Register Account</button>
+
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
@@ -80,7 +139,7 @@
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <a class="small" href="login">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>
@@ -96,10 +155,23 @@
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
+    
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 </body>
 
 </html>
+
+<!-- Registron page all error massage unset -->
+<?php
+unset($_SESSION['errors']['first_name_error']);
+unset($_SESSION['errors']['last_name_error']);
+unset($_SESSION['errors']['user_email_error']);
+unset($_SESSION['errors']['password_error']);
+unset($_SESSION['errors']['repeat_password_error']);
+unset($_SESSION['denided_massage']);
+
+?>
