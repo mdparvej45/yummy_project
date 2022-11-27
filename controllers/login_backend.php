@@ -4,7 +4,6 @@ require_once '../database/env.php';//Include database
 $request = $_POST;
 $user_email = $request['user_email'];
 $password = $request['password'];
-$encript_password = sha1($password);
 if(empty($user_email)){
     $_SESSION['user_email_error'] = 'Please input your email.';
     header('Location: ../deshboard/login.php');
@@ -18,10 +17,10 @@ if(empty($user_email)){
     $Query = "SELECT * FROM users_data WHERE email = '$user_email'";
     $searchEmail = mysqli_query($connection, $Query);
     if($searchEmail -> num_rows > 0){
-        $query = "SELECT * FROM users_data WHERE password = '$encript_password'";
-        $searchPassword = mysqli_query($connection, $query);
-        if($searchPassword -> num_rows > 0){
-            $_SESSION['success_massage'] = 'Seccessfully login !';
+        $query = "SELECT * FROM users_data WHERE email = '$user_email'";
+        $passwordQuery = mysqli_query($connection, $query);
+        $searchPassword = mysqli_fetch_assoc($passwordQuery)['password'];
+        if(password_verify($password, $searchPassword)){
             header('Location: ../deshboard/index.php');
         }else{
             $_SESSION['password_error'] = 'Your input password is wrong.';
