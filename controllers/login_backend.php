@@ -21,6 +21,8 @@ if(empty($user_email)){
         $passwordQuery = mysqli_query($connection, $query);
         $searchPassword = mysqli_fetch_assoc($passwordQuery)['password'];
         if(password_verify($password, $searchPassword)){
+            $auth = mysqli_fetch_assoc($searchEmail);
+            $_SESSION['auth'] = $auth;
             header('Location: ../deshboard/index.php');
         }else{
             $_SESSION['password_error'] = 'Your input password is wrong.';

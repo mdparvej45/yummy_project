@@ -54,8 +54,9 @@
           <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="./deshboard/register.php"><small class="text-danger">Request | Register</small></a></li>
+              <li><a href="./deshboard/login.php">Login</a></li>
               <li><a href="./deshboard/index.php">Deshboard</a></li>
-              <li><a href="#">Singout</a></li>
+              <li><a href="./controllers/singout_backend.php">Singout</a></li>
             </ul>
           </li>
         </ul>
