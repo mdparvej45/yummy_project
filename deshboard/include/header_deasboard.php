@@ -152,7 +152,7 @@ if(!isset($_SESSION['auth'])){
                         </li>
                         <!-- View website button  -->
                         <div class="cotiner mt-3 py-1 mx-auto">
-                        <a href="../index" class="btn btn-primary btn btn-sm"><span><i class="fa-light fa-eye text-white-50"></i></span> View Website</a>
+                        <a href="../index" target="_blank" class="btn btn-light btn btn-sm" style="border:1px solid blue ;"><span><img src="./img/view.svg"></span> View Website</a>
                         </div>
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">

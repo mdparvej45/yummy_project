@@ -2,7 +2,7 @@
 require_once './include/header_deasboard.php';// include header section
 require_once '../database/env.php';
 //Fetch all data 
-$query = "SELECT * FROM banners ";
+$query = "SELECT * FROM banners ORDER BY id DESC";
 $selectQuery = mysqli_query($connection, $query);
 $fetch = mysqli_fetch_all($selectQuery,1);
 // var_dump($fetch);
@@ -51,6 +51,9 @@ $fetch = mysqli_fetch_all($selectQuery,1);
     <div class="card">
       <div class="card-header bg-primary text-light">
         <strong>All Banners</strong>
+        <span class="row" style="justify-content: end;">
+            <a href="./index.php" class="btn btn-dark btn-sm">Back</a>
+            </span>
       </div>
       <div class="card-body">
       <table class="table table-striped table-responsibe">
@@ -73,26 +76,46 @@ $fetch = mysqli_fetch_all($selectQuery,1);
             // var_dump($data['id']);
         ?>
         <tr>
-            <td></td>
+            <td><img src="../uploads/banners/<?= $data['images'] ?>" style="width:180px; height:100px; border: 1px dotted gray"></td>
             <td><?= $data['title'] ?></td>
             <td><?php
-                if(strlen($data['detiles']) > 30){
-                   echo substr($data['detiles'], 0, 30) . " <a href='#' class='text-decoration-none '>more</a>";
+                if(strlen($data['detiles']) > 20){
+                   echo substr($data['detiles'], 0, 20) . " <a href='#' class='text-decoration-none '>more</a>";
+                }else{
+                  echo $data['detiles'];
                 }
             ?></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><?= $data['button_name1'] ?></td>
+            <td><?php 
+              if(strlen($data['button_link1']) > 7){
+                echo substr($data['button_link1'], 0, 7) . " <a href='#' class='text-decoration-none '>more</a>";
+             }else{
+               echo $data['button_link1'];
+             }
+            ?></td>
+            <td><?= $data['button_video'] ?></td>
+            <td><?php 
+            if(strlen($data['button_video_link']) > 7){
+                echo substr($data['button_video_link'], 0, 7) . " <a href='#' class='text-decoration-none '>more</a>";
+             }else{
+               echo $data['button_video_link'];
+             }
+            ?></td>
             <td class="<?= ($data['status'] == '1') ? 'text-success' : 'text-danger' ?>">
             <?= ($data['status'] == '1') ? 'Active' : 'De-Active' ?> </td>
             <td>
-                <span class="btn-group">
-                <a href="./view_post.php?id=<?= $data['id'] ?>"><button type="button" class="btn btn-secondary btn-sm">View</button></a>
-                <a href="./edit_post.php?id=<?= $data['id'] ?>"><button type="button" class="btn btn-info btn-sm">Edit</button></a>
-                <a href="./controller/status_backend.php?id=<?= $data['id'] ?>&status=<?= $data['status'] ?>"><button type="button" class="btn btn-<?= ($data['status'] == '0') ? 'success' : 'warning' ?> btn-sm"><?= ($data['status'] == '0') ? 'Active' : 'De-Active' ?></button></a>
-                <a href="./controller/delect_backend.php?id=<?= $data['id'] ?>"><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
+              <div class="row">
+                  <span class="btn-group">
+                      <a href="./view_banner.php?id=<?= $data['id'] ?>"><button type="button" class="btn btn-secondary btn-sm"><img src="./img/view.svg" alt=""></button></a>
+                      <a href="./view_banner.php?id=<?= $data['id'] ?>"><button type="button" class="btn btn-info btn-sm"><img src="./img/edit.svg" alt=""></button></a>
+                  </span>
+                  <span class="btn-group">
+                      <a href="../controllers/status_banner_backend.php?id=<?= $data['id'] ?> & status=<?= $data['status'] ?>"><button type="button" class="btn btn-<?= ($data['status'] == '0') ? 'success' : 'warning' ?> btn-sm"><img src="<?= ($data['status'] == '0') ? './img/active.svg' : './img/de-active.svg' ?>" alt=""></button></a>
+
+                      <a href="../controllers/delete_banner_backend.php?id=<?= $data['id'] ?>"><button type="button" class="btn btn-danger btn-sm"><img src="./img/delete.svg" alt=""></button></a>
                 </span>
+              </div>
+
             </td>
         </tr>
         <?php

@@ -49,7 +49,7 @@ if(isset($_SESSION['auth'])){
     }
     ?>
 
-    <div class="container">
+    <div class="container" style="overflow: hidden;">
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
@@ -60,7 +60,7 @@ if(isset($_SESSION['auth'])){
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block ">
-                                <img src="./img/login_image.svg" style="width:450px ; height:600px;">
+                                <img src="./img/login_image.svg" style="width:460px ; height:470px;">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
@@ -101,12 +101,6 @@ if(isset($_SESSION['auth'])){
                                         </div>
                                             <button type="submit" name="login_button" class="btn btn-primary btn-user btn-block">Login</button>
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
                                     </form>
                                     <hr>
                                     <div class="text-center">
