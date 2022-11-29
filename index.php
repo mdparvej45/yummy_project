@@ -4,7 +4,7 @@
   require_once './database/env.php';
 
   // <!-- ======= Banner section fetch data ======= -->
-$bannerQuery = "SELECT * FROM banners";
+$bannerQuery = "SELECT * FROM banners ORDER BY id DESC";
 $selectBannerQuery = mysqli_query($connection, $bannerQuery);
 $fetchBanner = mysqli_fetch_assoc($selectBannerQuery);
 
