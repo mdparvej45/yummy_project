@@ -112,7 +112,7 @@ $fetch = mysqli_fetch_all($selectQuery,1);
                   <span class="btn-group">
                       <a href="../controllers/status_banner_backend.php?id=<?= $data['id'] ?> & status=<?= $data['status'] ?>"><button type="button" class="btn btn-<?= ($data['status'] == '0') ? 'success' : 'warning' ?> btn-sm"><img src="<?= ($data['status'] == '0') ? './img/active.svg' : './img/de-active.svg' ?>" alt=""></button></a>
 
-                      <a href="../controllers/delete_banner_backend.php?id=<?= $data['id'] ?>"><button type="button" class="btn btn-danger btn-sm"><img src="./img/delete.svg" alt=""></button></a>
+                      <a href="../controllers/delete_banner_backend.php?id=<?= $data['id'] ?>" class="bannerDelete btn btn-sm btn-danger">Delete</a>
                 </span>
               </div>
 
@@ -125,7 +125,7 @@ $fetch = mysqli_fetch_all($selectQuery,1);
       if(mysqli_num_rows($selectQuery) == 0){
         ?>
         <tr class="text-center">
-          <td colspan="5"> <img  src="./assets/images/no-data-icon.png" style="width:200px ; opacity: .5;"></td>
+          <td colspan="9"> <h5>No data Found</h5></td>
         </tr>
       <?php
       }
@@ -138,4 +138,27 @@ $fetch = mysqli_fetch_all($selectQuery,1);
 </div>
 <?php
 require_once './include/footer_deshboard.php';// include footer section
-?>
+?> 
+<script>
+  let bannerDeleteButton = document.querySelectorAll(".bannerDelete")
+      for(i = 0; i < bannerDeleteButton.length; i++){
+        bannerDeleteButton[i].addEventListener('click', function(e){
+          e.preventDefault();
+          let url = e.target.href
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location = url
+            }
+          })
+        })
+      }
+
+</script>

@@ -85,6 +85,21 @@ if(!isset($_SESSION['auth'])){
                     </div>
                 </div>
             </li>
+            <!-- Nav Item - Why Choose Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#why_choose"
+                    aria-expanded="true" aria-controls="why_choose">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Why Choose</span>
+                </a>
+                <div id="why_choose" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Choose:</h6>
+                        <a class="collapse-item" href="./add_why_choose.php">Add- Why Choose</a>
+                        <a class="collapse-item" href="./all_why_choose.php">All- Why Choose</a>
+                    </div>
+                </div>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

@@ -18,6 +18,9 @@
 <!-- Photo instant change on Form -->
 <script src="./js/photo_instant_change.js"></script>
 
+<!-- Sweet alert install -->
+<script src="./js/sweetalert2@11.js"></script>
+
 </body>
 
 </html>
