@@ -29,4 +29,5 @@
 unset($_SESSION['errors']);
 unset($_SESSION['post_success_msg']);
 unset($_SESSION['no_success_msg']);
+unset($_SESSION['success_msg']);
 ?>

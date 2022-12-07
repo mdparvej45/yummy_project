@@ -54,14 +54,27 @@ session_start();
           <li><a href="#chefs">Chefs</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="./deshboard/register.php"><small class="text-danger">Request | Register</small></a></li>
-              <li><a href="./deshboard/login.php">Login</a></li>
-              <li><a href="./deshboard/index.php">Deshboard</a></li>
-              <li><a href="./controllers/singout_backend.php">Singout</a></li>
-            </ul>
-          </li>
+          <?php
+            if(isset($_SESSION['auth'])){
+              ?>
+              <li class="dropdown"><a href="#"><span><?= $_SESSION['auth']['first_name'] ?></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <ul>
+                  <li><a href="./deshboard/index.php">Deshboard</a></li>
+                  <li><a href="./controllers/singout_backend.php">Singout</a></li>
+                </ul>
+              </li>
+          <?php
+            }else{
+              ?>
+              <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <ul>
+                  <li><a href="./deshboard/register.php"><Small>Request | Singup</Small></a></li>
+                  <li><a href="./deshboard/login.php">Login</a></li>
+                </ul>
+              </li>
+          <?php
+            }
+            ?>
         </ul>
       </nav><!-- .navbar -->
 

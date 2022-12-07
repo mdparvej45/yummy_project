@@ -8,13 +8,11 @@ $bannerQuery = "SELECT * FROM banners ORDER BY id DESC";
 $selectBannerQuery = mysqli_query($connection, $bannerQuery);
 $fetchBanner = mysqli_fetch_assoc($selectBannerQuery);
 
-// <!-- ======= Why choose section fetch data ======= -->
+// <!-- ======= Why choose catagory detiles section fetch data ======= -->
 $query = "SELECT * FROM why_choose ORDER BY id DESC";
 $selectWhychooseQuery = mysqli_query($connection, $query);
 $fetchdata = mysqli_fetch_all($selectWhychooseQuery,1);
 
-// print_r($fetchdata['id']);
-// exit();
 
   ?>
 
@@ -83,57 +81,53 @@ $fetchdata = mysqli_fetch_all($selectWhychooseQuery,1);
     </section><!-- End About Section -->
 
     <!-- ======= Why Us Section ======= -->
-    <?php
-      foreach($fetchdata as $data){
-        ?>
+
         <section id="why-us" class="why-us section-bg">
+          <?php
+            foreach($fetchdata as $data){
+              ?>
         <div class="container" data-aos="fade-up">
-  
-          <div class="row gy-4">
-  
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-              <div class="why-box">
-                <h3><?= $data['title'] ?></h3>
-                <p><?= $data['detiles'] ?>  </p>
-                <div class="text-center">
-                  <a href="<?= $data['button_link'] ?>" class="more-btn"><?= $data['button_name'] ?> <i class="bx bx-chevron-right"></i></a>
-                </div>
-              </div>
-            </div><!-- End Why Box -->
-  
-            <div class="col-lg-8 d-flex align-items-center">
               <div class="row gy-4">
-                <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
-                  <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                    <i class="<?= $data['catagory'] ?>"></i>
-                    <h4><?= $data['catagory_title'] ?></h4>
-                    <p><?= $data['catagory_detiles'] ?></p>
+                <div class="col-lg-4 mb-3" data-aos="fade-up" data-aos-delay="100">
+                  <div class="why-box">
+                    <h3> Lorem, ipsum dolor. </h3>
+                    <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum recusandae ut aliquam necessitatibus consectetur natus dolores fugit, voluptas dolore. Ullam cum similique dolorum sunt quia vero, ut adipisci inventore eligendi.</p>
+                    <div class="text-center">
+                      <a href="#" <i class="bx bx-chevron-right"></i></a>
+                    </div>
                   </div>
-                </div><!-- End Icon Box -->
-                <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
-                  <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                    <i class="<?= $data['catagory'] ?>"></i>
-                    <h4><?= $data['catagory_title'] ?></h4>
-                    <p><?= $data['catagory_detiles'] ?></p>
+                </div><!-- End Why Box -->
+                <div class="col-lg-8 d-flex align-items-center">
+                  <div class="row gy-4">
+                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
+                      <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                        <i class="<?= $data['catagory'] ?>"></i>
+                        <h4><?= $data['catagory_title'] ?></h4>
+                        <p><?= $data['catagory_detiles'] ?></p>
+                      </div>
+                    </div><!-- End Icon Box -->
+                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
+                      <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                        <i class="<?= $data['catagory'] ?>"></i>
+                        <h4><?= $data['catagory_title'] ?></h4>
+                        <p><?= $data['catagory_detiles'] ?></p>
+                      </div>
+                    </div><!-- End Icon Box -->
+                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
+                      <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                        <i class="<?= $data['catagory'] ?>"></i>
+                        <h4><?= $data['catagory_title'] ?></h4>
+                        <p><?= $data['catagory_detiles'] ?></p>
+                      </div>
+                    </div><!-- End Icon Box -->
                   </div>
-                </div><!-- End Icon Box -->
-                <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
-                  <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                    <i class="<?= $data['catagory'] ?>"></i>
-                    <h4><?= $data['catagory_title'] ?></h4>
-                    <p><?= $data['catagory_detiles'] ?></p>
-                  </div>
-                </div><!-- End Icon Box -->
-              </div>
-            </div>
-  
-          </div>
-  
+                </div>
+              </div> 
         </div>
+          <?php
+            }
+          ?>
       </section>
-    <?php
-      }    
-    ?>
     <!-- End Why Us Section -->
 
     <!-- ======= Stats Counter Section ======= -->
