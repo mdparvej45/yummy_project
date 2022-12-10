@@ -115,6 +115,21 @@ if(!isset($_SESSION['auth'])){
                     </div>
                 </div>
             </li>
+            <!-- Nav Item - Why Choose Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menus"
+                    aria-expanded="true" aria-controls="menus">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Menus</span>
+                </a>
+                <div id="menus" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Catagorys:</h6>
+                        <a class="collapse-item" href="./add_menus.php">Add Catagory & Menu</a>
+                        <a class="collapse-item" href="./all_menus.php">All Foods</a>
+                    </div>
+                </div>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

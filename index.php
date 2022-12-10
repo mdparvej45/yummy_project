@@ -33,7 +33,8 @@ $fetchdata = mysqli_fetch_all($selectWhychooseQuery,1);
         </div>
       </div>
     </div>
-  </section><!-- End Hero Section -->
+  </section>
+  <!-- End Hero Section -->
 
   <main id="main">
 
