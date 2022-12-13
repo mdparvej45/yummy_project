@@ -126,7 +126,7 @@ if(!isset($_SESSION['auth'])){
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Catagorys:</h6>
                         <a class="collapse-item" href="./add_menus.php">Add Catagory & Menu</a>
-                        <a class="collapse-item" href="./all_menus.php">All Foods</a>
+                        <a class="collapse-item" href="./all_foods.php">All Foods</a>
                     </div>
                 </div>
             </li>

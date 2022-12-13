@@ -2,7 +2,8 @@
 session_start();
 require_once '../database/env.php';
 if(isset($_POST['submit_catagory'])){
-    $catagory = $_POST['catagory'];
+    $catagory = strtolower($_POST['catagory']);
+    
     $errors = [];
     if(empty($catagory)){
         $errors['catagory_error'] = 'Please input a new Catagory.';
@@ -18,6 +19,7 @@ if(isset($_POST['submit_catagory'])){
         if($insert_query){
             $_SESSION['errors'] = $errors;
             $_SESSION['success_msg'] = 'Your catagory successfully submit.';
+            header('Location: ../deshboard/add_menus.php');
         }else{
             $_SESSION['no_success_msg'] = 'Something is wrong, Please try again.';
             header('Location: ../deshboard/add_menus.php');

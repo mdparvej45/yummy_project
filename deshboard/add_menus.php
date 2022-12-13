@@ -1,19 +1,26 @@
 <?php
 require_once './include/header_deasboard.php';// include header section
+require_once '../database/env.php';
+$query = "SELECT * FROM catagories WHERE status = '1'";
+$select_query = mysqli_query($connection, $query);
+$fetch = mysqli_fetch_all($select_query,1);
+// print_r($fetch);
+// exit();
+
 ?>
 
     <!-- Add Succesfully notifacation -->
     <?php
-    if(isset($_SESSION['errors']['success_msg'])){
+    if(isset($_SESSION['success_msg'])){
         ?>
-        <div class="toast-show" role="alert" aria-live="assertive" aria-atomic="true" >
+        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" >
         <div class="toast-header">
         <img src="./img/yes_check_circle.svg" style="width:40px;">
         <strong class="me-auto">POST STATUS:</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body text-white bg-success">
-        <?= $_SESSION['errors']['success_msg'] ?>
+        <?= $_SESSION['success_msg'] ?>
         </div>
     </div>
     <?php
@@ -22,7 +29,7 @@ require_once './include/header_deasboard.php';// include header section
 
 <!-- Add denided notifacation -->
 <?php
-if(isset($_SESSION['errors']['no_success_msg'])){
+if(isset($_SESSION['no_success_msg'])){
     ?>
     <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" >
     <div class="toast-header">
@@ -31,7 +38,7 @@ if(isset($_SESSION['errors']['no_success_msg'])){
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body text-white bg-danger">
-      <?= $_SESSION['errors']['no_success_msg'] ?>
+      <?= $_SESSION['no_success_msg'] ?>
     </div>
   </div>
   <?php
@@ -45,7 +52,7 @@ if(isset($_SESSION['errors']['no_success_msg'])){
     <div class="card-header bg-primary text-light">
         <h3 style="text-align: center;">Add Menus...</h3>
     </div>
-    <form action="../controllers/add_menus_backend.php" method="POST">
+    <form action="../controllers/add_catagory_backend.php" method="POST">
         <div class="row mt-3 mx-3">
             <div class="col-lg-9">
                 <label for="catagory" class="w-100">Catagory:
@@ -67,6 +74,11 @@ if(isset($_SESSION['errors']['no_success_msg'])){
                     <input type="file" name="image" class="d-none bannerInputImage" id="banner_image">
                 </label>
                 <br>
+                <span>
+                    <!-- <?php
+                        // if(isset())
+                    ?> -->
+                </span>
                 <a href="#" class="btn btn-sm btn-primary w-30">Change</a>
             </div>
             <div class="col-lg-8">
@@ -75,9 +87,14 @@ if(isset($_SESSION['errors']['no_success_msg'])){
                         <div class="col-lg-6">
                         <label for="food_catagory" class="w-100">Select Catagory:
                             <select name="food_catagory" id="food_catagory" class="form-control">
-                                <option value="">One</option>
-                                <option value="">One</option>
-                                <option value="">One</option>
+                                <option disabled selected>SELECT FOOD CATAGORIES</option>
+                                <?php 
+                                foreach($fetch as $data){
+                                ?>
+                                    <option value="<?= $data['id'] ?>"><?= ucfirst($data['catagories']) ?></option>
+                                <?php
+                                }
+                                ?>
                             </select>
                         </label>
                         </div>

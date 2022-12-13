@@ -16,7 +16,7 @@ if(isset($request['register_button'])){
         $errors['first_name_error'] = 'Your first name must be less then 15 character.';
     }if(empty($last_name)){
         $errors['last_name_error'] = 'Please input your last name.';
-    }elseif(strlen($last_name)){
+    }elseif(strlen($last_name) > 15){
         $errros['last_name_error'] = 'Your first name must be less then 15 character.';
     }if(empty($user_email)){
         $errors['user_email_error'] = 'Please input your new email';
